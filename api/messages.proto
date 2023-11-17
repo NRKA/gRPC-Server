@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "pkg/grpcServer";
+
+service ArticleService {
+  rpc CreateArticle(CreateArticleRequest) returns (CreateArticleResponse);
+  rpc GetArticle(GetArticleIDRequest) returns (GetArticleResponse);
+  rpc DeleteArticle(DeleteArticleIDRequest) returns (google.protobuf.Empty);
+  rpc UpdateArticle(UpdateArticleRequest) returns (google.protobuf.Empty);
+}
+
+message CreateArticleRequest {
+  string name = 1;
+  int64 rating = 2;
+}
+
+message CreateArticleResponse {
+  int64 id = 1;
+  string name = 2;
+  int64 rating = 3;
+}
+
+message GetArticleIDRequest {
+  int64 id = 1;
+}
+
+message GetArticleResponse {
+  int64 id = 1;
+  string name = 2;
+  int64 rating = 3;
+}
+
+message DeleteArticleIDRequest {
+  int64 id = 1;
+}
+
+message UpdateArticleRequest {
+  int64 id = 1;
+  string name = 2;
+  int64 rating = 3;
+}
